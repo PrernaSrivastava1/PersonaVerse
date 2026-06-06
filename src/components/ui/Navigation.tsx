@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 
 const NAV_ITEMS = [
-  { href: '/', label: 'Home', icon: '🏠' },
+  { href: '/', label: 'Home' },
   { href: '/universe', label: 'Quiz', icon: '🔮' },
   { href: '/daily', label: 'Daily', icon: '⭐' },
   { href: '/achievements', label: 'Trophies', icon: '🏆' },

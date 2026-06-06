@@ -129,7 +129,7 @@ export default function ResultsPage() {
               boxShadow: '0 0 12px rgba(255,215,0,0.06), inset 0 1px 0 rgba(255,215,0,0.08)',
               transition: 'all 0.3s ease',
             }}>
-              <span style={{ fontSize: '1.1rem', filter: 'drop-shadow(0 0 4px rgba(255,215,0,0.4))' }}>🏠</span>
+              <span style={{ fontSize: '1.1rem', filter: 'drop-shadow(0 0 4px rgba(255,215,0,0.4))' }}></span>
               <span>Home</span>
             </button>
           </div>
