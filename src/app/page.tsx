@@ -22,7 +22,7 @@ export default function LandingPage() {
   }, [router]);
 
   return (
-    <div style={{ minHeight: '100vh', position: 'relative', overflow: 'hidden', background: '#050510' }}>
+    <div style={{ minHeight: '100vh', position: 'relative', overflow: 'hidden', background: '#0A0A0A' }}>
       {/* 3D Background */}
       <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
         <CosmicScene>
@@ -51,8 +51,8 @@ export default function LandingPage() {
           >
             <div style={{
               width: 64, height: 64, borderRadius: '50%',
-              background: 'radial-gradient(circle, #00d4ff 0%, #2d1b69 40%, transparent 70%)',
-              boxShadow: '0 0 100px 50px rgba(0, 212, 255, 0.3)',
+              background: 'radial-gradient(circle, #FFD700 0%, #1A1A14 40%, transparent 70%)',
+              boxShadow: '0 0 100px 50px rgba(255, 215, 0, 0.3)',
             }} />
           </motion.div>
         )}
@@ -78,7 +78,7 @@ export default function LandingPage() {
             transition={{ delay: 0.5, duration: 0.8 }}
             style={{
               fontSize: '0.75rem', letterSpacing: '0.3em', textTransform: 'uppercase',
-              marginBottom: '1.5rem', color: '#b8b5c9',
+              marginBottom: '1.5rem', color: '#A89968',
             }}
           >
             ✦ AI POWERED PERSONALITY UNIVERSE ✦
@@ -107,7 +107,7 @@ export default function LandingPage() {
             style={{
               fontSize: 'clamp(1rem, 2.5vw, 1.25rem)',
               marginBottom: '3rem', maxWidth: 520, margin: '0 auto 3rem',
-              color: '#b8b5c9', lineHeight: 1.7,
+              color: '#A89968', lineHeight: 1.7,
             }}
           >
             Explore the Universe Inside You — Discover your hero identity, villain arc,
@@ -149,7 +149,7 @@ export default function LandingPage() {
                   style={{
                     padding: '0.4rem 1rem', fontSize: '0.7rem',
                     letterSpacing: '0.1em', textTransform: 'uppercase',
-                    color: '#00d4ff',
+                    color: '#FFD700',
                   }}
                 >
                   {tag}
@@ -166,7 +166,7 @@ export default function LandingPage() {
           transition={{ delay: 2.5 }}
           style={{
             position: 'absolute', bottom: 24, fontSize: '0.65rem',
-            letterSpacing: '0.15em', color: '#6b6880',
+            letterSpacing: '0.15em', color: '#6B6340',
           }}
         >
           PERSONAVERSE v1.0 — Powered by Gemini AI

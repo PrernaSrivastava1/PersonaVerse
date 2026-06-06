@@ -15,22 +15,22 @@ interface PlanetProps {
 
 const PLANET_CONFIG = {
   mind: {
-    color: '#0066cc',
-    emissive: '#00d4ff',
+    color: '#D4A012',
+    emissive: '#FFD700',
     label: 'Mind',
     emoji: '🧠',
     geometry: 'icosahedron' as const,
   },
   emotion: {
-    color: '#cc3366',
-    emissive: '#ff6b9d',
+    color: '#B8860B',
+    emissive: '#E6A817',
     label: 'Emotion',
     emoji: '❤️',
     geometry: 'sphere' as const,
   },
   chaos: {
-    color: '#cc6600',
-    emissive: '#ff8c42',
+    color: '#8B7500',
+    emissive: '#FFCC00',
     label: 'Chaos',
     emoji: '🔥',
     geometry: 'dodecahedron' as const,
@@ -141,7 +141,7 @@ export default function Planet({ type, position, onClick, isSelected }: PlanetPr
         <Text
           position={[0, -1.3, 0]}
           fontSize={0.25}
-          color="#e8e6f0"
+          color="#F5F0E1"
           anchorX="center"
           anchorY="middle"
           font={undefined}

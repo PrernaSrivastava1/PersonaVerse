@@ -17,11 +17,11 @@ export default function ParticleField({ count = 600, radius = 8 }: ParticleField
     const colors = new Float32Array(count * 3);
 
     const colorPalette = [
-      new THREE.Color('#00d4ff'), // cyan
-      new THREE.Color('#ff6b9d'), // pink
-      new THREE.Color('#00ff88'), // green
+      new THREE.Color('#FFD700'), // gold
+      new THREE.Color('#E6A817'), // amber
+      new THREE.Color('#FFE55C'), // bright gold
       new THREE.Color('#ffffff'), // white
-      new THREE.Color('#b8b5c9'), // mist
+      new THREE.Color('#A89968'), // muted gold
     ];
 
     for (let i = 0; i < count; i++) {

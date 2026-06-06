@@ -13,7 +13,7 @@ export default function AchievementsPage() {
       <div className="content-overlay" style={{ minHeight: '100vh', padding: '2rem 1rem', maxWidth: 700, margin: '0 auto' }}>
         <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} style={{ textAlign: 'center', marginBottom: '2rem' }}>
           <h1 className="gradient-text-cosmic" style={{ fontSize: 'clamp(1.75rem, 5vw, 2.75rem)', fontWeight: 800, marginBottom: '0.25rem' }}>Your Achievements</h1>
-          <p style={{ fontSize: '0.85rem', color: '#b8b5c9' }}>{unlocked} of {achievements.length} unlocked</p>
+          <p style={{ fontSize: '0.85rem', color: '#A89968' }}>{unlocked} of {achievements.length} unlocked</p>
         </motion.div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.75rem', marginBottom: '2rem' }}>
@@ -26,8 +26,8 @@ export default function AchievementsPage() {
             <motion.div key={label} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }}
               className="glass" style={{ padding: '1rem 0.5rem', textAlign: 'center' }}>
               <div style={{ fontSize: '1.5rem', marginBottom: '0.25rem' }}>{icon}</div>
-              <p style={{ fontSize: '1.1rem', fontWeight: 700, color: '#e8e6f0' }}>{value}</p>
-              <p style={{ fontSize: '0.55rem', letterSpacing: '0.08em', textTransform: 'uppercase', color: '#6b6880' }}>{label}</p>
+              <p style={{ fontSize: '1.1rem', fontWeight: 700, color: '#F5F0E1' }}>{value}</p>
+              <p style={{ fontSize: '0.55rem', letterSpacing: '0.08em', textTransform: 'uppercase', color: '#6B6340' }}>{label}</p>
             </motion.div>
           ))}
         </div>
@@ -38,16 +38,16 @@ export default function AchievementsPage() {
               className={a.unlockedAt ? 'glass glow-cyan' : 'glass'}
               style={{ padding: '1.25rem', textAlign: 'center', opacity: a.unlockedAt ? 1 : 0.4, filter: a.unlockedAt ? 'none' : 'grayscale(1)' }}>
               <div style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>{a.unlockedAt ? a.icon : '🔒'}</div>
-              <h3 style={{ fontSize: '0.8rem', fontWeight: 600, marginBottom: '0.25rem', color: a.unlockedAt ? '#e8e6f0' : '#6b6880' }}>{a.title}</h3>
-              <p style={{ fontSize: '0.65rem', color: '#6b6880' }}>{a.description}</p>
-              {a.unlockedAt && <p style={{ fontSize: '0.55rem', marginTop: '0.4rem', color: '#00d4ff' }}>Unlocked {new Date(a.unlockedAt).toLocaleDateString()}</p>}
+              <h3 style={{ fontSize: '0.8rem', fontWeight: 600, marginBottom: '0.25rem', color: a.unlockedAt ? '#F5F0E1' : '#6B6340' }}>{a.title}</h3>
+              <p style={{ fontSize: '0.65rem', color: '#6B6340' }}>{a.description}</p>
+              {a.unlockedAt && <p style={{ fontSize: '0.55rem', marginTop: '0.4rem', color: '#FFD700' }}>Unlocked {new Date(a.unlockedAt).toLocaleDateString()}</p>}
             </motion.div>
           ))}
         </div>
 
         <div style={{ display: 'flex', justifyContent: 'center', gap: '0.75rem' }}>
           <Link href="/universe" className="btn-cosmic" style={{ fontSize: '0.85rem', padding: '0.6rem 1.25rem' }}>🔮 Take Quiz</Link>
-          <Link href="/" className="glass-subtle" style={{ padding: '0.6rem 1.25rem', borderRadius: 9999, fontSize: '0.85rem', color: '#b8b5c9', display: 'inline-flex', alignItems: 'center' }}>🏠 Home</Link>
+          <Link href="/" className="glass-subtle" style={{ padding: '0.6rem 1.25rem', borderRadius: 9999, fontSize: '0.85rem', color: '#A89968', display: 'inline-flex', alignItems: 'center' }}>🏠 Home</Link>
         </div>
       </div>
     </div>

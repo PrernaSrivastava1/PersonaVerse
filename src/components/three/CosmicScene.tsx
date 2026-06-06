@@ -19,9 +19,9 @@ export default function CosmicScene({ children, className = '' }: CosmicScenePro
       >
         <Suspense fallback={null}>
           <ambientLight intensity={0.4} />
-          <pointLight position={[10, 10, 10]} intensity={0.8} color="#00d4ff" />
-          <pointLight position={[-10, -5, 5]} intensity={0.5} color="#ff6b9d" />
-          <pointLight position={[0, 5, -10]} intensity={0.3} color="#00ff88" />
+          <pointLight position={[10, 10, 10]} intensity={0.8} color="#FFD700" />
+          <pointLight position={[-10, -5, 5]} intensity={0.5} color="#E6A817" />
+          <pointLight position={[0, 5, -10]} intensity={0.3} color="#FFE55C" />
           {children}
         </Suspense>
       </Canvas>

@@ -39,8 +39,8 @@ export default function CosmicOrb() {
       <mesh ref={meshRef}>
         <icosahedronGeometry args={[1.5, 4]} />
         <meshStandardMaterial
-          color="#2d1b69"
-          emissive="#00d4ff"
+          color="#3D3520"
+          emissive="#FFD700"
           emissiveIntensity={0.15}
           metalness={0.3}
           roughness={0.4}
@@ -51,8 +51,8 @@ export default function CosmicOrb() {
       <mesh>
         <icosahedronGeometry args={[1.52, 2]} />
         <meshStandardMaterial
-          color="#00d4ff"
-          emissive="#00d4ff"
+          color="#FFD700"
+          emissive="#FFD700"
           emissiveIntensity={0.3}
           wireframe
           transparent
@@ -63,8 +63,8 @@ export default function CosmicOrb() {
       <mesh>
         <sphereGeometry args={[1.3, 32, 32]} />
         <meshStandardMaterial
-          color="#1a0533"
-          emissive="#ff6b9d"
+          color="#1A1A14"
+          emissive="#E6A817"
           emissiveIntensity={0.08}
           transparent
           opacity={0.5}

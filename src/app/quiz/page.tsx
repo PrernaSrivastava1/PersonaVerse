@@ -49,14 +49,14 @@ export default function QuizPage() {
         <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} className="content-overlay" style={{ textAlign: 'center' }}>
           <div style={{
             width: 80, height: 80, margin: '0 auto 1.5rem', borderRadius: '50%',
-            background: 'radial-gradient(circle, #00d4ff, #2d1b69)',
-            boxShadow: '0 0 60px rgba(0, 212, 255, 0.4), 0 0 120px rgba(45, 27, 105, 0.3)',
+            background: 'radial-gradient(circle, #FFD700, #1A1A14)',
+            boxShadow: '0 0 60px rgba(255, 215, 0, 0.4), 0 0 120px rgba(26, 26, 20, 0.3)',
             animation: 'pulse-glow 2s ease-in-out infinite',
           }} />
           <h2 className="gradient-text-cosmic" style={{ fontSize: 'clamp(1.5rem, 4vw, 2.25rem)', fontWeight: 700, marginBottom: '0.75rem' }}>
             Analyzing Your Universe...
           </h2>
-          <p style={{ color: '#b8b5c9' }}>The cosmos is reading your soul</p>
+          <p style={{ color: '#A89968' }}>The cosmos is reading your soul</p>
         </motion.div>
       </div>
     );
@@ -70,7 +70,7 @@ export default function QuizPage() {
         <div style={{ maxWidth: 640, width: '100%', margin: '0 auto 2rem' }}>
           <div className="glass-subtle" style={{ height: 6, borderRadius: 3, overflow: 'hidden' }}>
             <motion.div
-              style={{ height: '100%', borderRadius: 3, background: 'linear-gradient(90deg, #00d4ff, #ff6b9d)' }}
+              style={{ height: '100%', borderRadius: 3, background: 'linear-gradient(90deg, #FFD700, #E6A817)' }}
               initial={{ width: 0 }}
               animate={{ width: `${progress}%` }}
               transition={{ duration: 0.5, ease: 'easeOut' }}

@@ -26,11 +26,11 @@ export default function ShareButton({ title, text }: ShareButtonProps) {
   return (
     <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1rem' }}>
       <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={handleCopy}
-        className="glass-subtle" style={{ padding: '0.4rem 1rem', fontSize: '0.7rem', borderRadius: 9999, cursor: 'pointer', border: 'none', fontFamily: 'inherit', color: copied ? '#00ff88' : '#b8b5c9' }}>
+        className="glass-subtle" style={{ padding: '0.4rem 1rem', fontSize: '0.7rem', borderRadius: 9999, cursor: 'pointer', border: 'none', fontFamily: 'inherit', color: copied ? '#7FCC3E' : '#A89968' }}>
         {copied ? '✓ Copied!' : '📋 Copy'}
       </motion.button>
       <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={handleTwitter}
-        className="glass-subtle" style={{ padding: '0.4rem 1rem', fontSize: '0.7rem', borderRadius: 9999, cursor: 'pointer', border: 'none', fontFamily: 'inherit', color: '#00d4ff' }}>
+        className="glass-subtle" style={{ padding: '0.4rem 1rem', fontSize: '0.7rem', borderRadius: 9999, cursor: 'pointer', border: 'none', fontFamily: 'inherit', color: '#FFD700' }}>
         𝕏 Share
       </motion.button>
     </div>

@@ -29,20 +29,20 @@ export default function QuestionCard({ question, onAnswer, questionNumber, total
             style={{
               width: 8, height: 8, borderRadius: '50%',
               transition: 'all 0.3s',
-              background: i < questionNumber ? '#00d4ff' : i === questionNumber - 1 ? '#ff6b9d' : 'rgba(255,255,255,0.12)',
-              boxShadow: i === questionNumber - 1 ? '0 0 8px #ff6b9d' : 'none',
+              background: i < questionNumber ? '#FFD700' : i === questionNumber - 1 ? '#E6A817' : 'rgba(255,255,255,0.12)',
+              boxShadow: i === questionNumber - 1 ? '0 0 8px #E6A817' : 'none',
             }}
           />
         ))}
       </div>
 
       {/* Question number */}
-      <p style={{ fontSize: '0.7rem', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '0.75rem', textAlign: 'center', color: '#6b6880' }}>
+      <p style={{ fontSize: '0.7rem', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '0.75rem', textAlign: 'center', color: '#6B6340' }}>
         Question {questionNumber} of {totalQuestions}
       </p>
 
       {/* Scenario */}
-      <h2 style={{ fontSize: 'clamp(1.1rem, 3vw, 1.35rem)', fontWeight: 600, textAlign: 'center', marginBottom: '2rem', lineHeight: 1.5, color: '#e8e6f0' }}>
+      <h2 style={{ fontSize: 'clamp(1.1rem, 3vw, 1.35rem)', fontWeight: 600, textAlign: 'center', marginBottom: '2rem', lineHeight: 1.5, color: '#F5F0E1' }}>
         {question.scenario}
       </h2>
 
@@ -55,7 +55,7 @@ export default function QuestionCard({ question, onAnswer, questionNumber, total
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15 + i * 0.06 }}
             onClick={() => onAnswer(option.id)}
-            whileHover={{ scale: 1.015, boxShadow: '0 0 20px rgba(0, 212, 255, 0.12)' }}
+            whileHover={{ scale: 1.015, boxShadow: '0 0 20px rgba(255, 215, 0, 0.12)' }}
             whileTap={{ scale: 0.98 }}
             style={{
               width: '100%', textAlign: 'left',
@@ -63,7 +63,7 @@ export default function QuestionCard({ question, onAnswer, questionNumber, total
               background: 'rgba(15, 15, 35, 0.4)',
               border: '1px solid rgba(255, 255, 255, 0.06)',
               cursor: 'pointer', transition: 'all 0.2s',
-              color: '#e8e6f0', fontSize: '0.9rem',
+              color: '#F5F0E1', fontSize: '0.9rem',
               display: 'flex', alignItems: 'center', gap: '0.65rem',
               fontFamily: 'inherit',
             }}

@@ -13,21 +13,21 @@ export default function ProfilePage() {
     <div className="page-container">
       <div className="content-overlay" style={{ minHeight: '100vh', padding: '2rem 1rem', maxWidth: 600, margin: '0 auto' }}>
         <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} style={{ textAlign: 'center', marginBottom: '2rem' }}>
-          <div style={{ width: 80, height: 80, margin: '0 auto 1rem', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2.5rem', background: 'linear-gradient(135deg, #2d1b69, #1e3a5f)', boxShadow: '0 0 40px rgba(0, 212, 255, 0.3)' }}>
+          <div style={{ width: 80, height: 80, margin: '0 auto 1rem', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2.5rem', background: 'linear-gradient(135deg, #1A1A14, #2A2510)', boxShadow: '0 0 40px rgba(255, 215, 0, 0.3)' }}>
             👤
           </div>
           <h1 className="gradient-text-cosmic" style={{ fontSize: 'clamp(1.75rem, 5vw, 2.75rem)', fontWeight: 800, marginBottom: '0.25rem' }}>Your Universe</h1>
-          <p style={{ fontSize: '1rem', fontWeight: 600, color: '#00d4ff' }}>Level {level} — {levelName}</p>
+          <p style={{ fontSize: '1rem', fontWeight: 600, color: '#FFD700' }}>Level {level} — {levelName}</p>
         </motion.div>
 
         {/* XP bar */}
         <div className="glass-subtle" style={{ padding: '1rem', marginBottom: '1.5rem' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.4rem' }}>
-            <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#00d4ff' }}>Level {level}</span>
-            <span style={{ fontSize: '0.7rem', color: '#6b6880' }}>{xp} XP</span>
+            <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#FFD700' }}>Level {level}</span>
+            <span style={{ fontSize: '0.7rem', color: '#6B6340' }}>{xp} XP</span>
           </div>
           <div style={{ height: 6, borderRadius: 3, background: 'rgba(255,255,255,0.08)', overflow: 'hidden' }}>
-            <div style={{ height: '100%', borderRadius: 3, background: 'linear-gradient(90deg, #00d4ff, #ff6b9d, #00ff88)', width: `${Math.min((xp % 200) / 2, 100)}%`, transition: 'width 0.5s' }} />
+            <div style={{ height: '100%', borderRadius: 3, background: 'linear-gradient(90deg, #FFD700, #E6A817, #7FCC3E)', width: `${Math.min((xp % 200) / 2, 100)}%`, transition: 'width 0.5s' }} />
           </div>
         </div>
 
@@ -41,8 +41,8 @@ export default function ProfilePage() {
             <motion.div key={label} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }}
               className="glass" style={{ padding: '1rem', textAlign: 'center' }}>
               <div style={{ fontSize: '1.25rem', marginBottom: '0.25rem' }}>{icon}</div>
-              <p style={{ fontSize: '1.1rem', fontWeight: 700, color: '#e8e6f0' }}>{value}</p>
-              <p style={{ fontSize: '0.55rem', letterSpacing: '0.08em', textTransform: 'uppercase', color: '#6b6880' }}>{label}</p>
+              <p style={{ fontSize: '1.1rem', fontWeight: 700, color: '#F5F0E1' }}>{value}</p>
+              <p style={{ fontSize: '0.55rem', letterSpacing: '0.08em', textTransform: 'uppercase', color: '#6B6340' }}>{label}</p>
             </motion.div>
           ))}
         </div>
@@ -50,10 +50,10 @@ export default function ProfilePage() {
         {/* Latest Result */}
         {latestResult && (
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="glass-strong" style={{ padding: '1.5rem', marginBottom: '1.5rem' }}>
-            <p style={{ fontSize: '0.6rem', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '0.5rem', color: '#00d4ff' }}>Latest Personality</p>
+            <p style={{ fontSize: '0.6rem', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '0.5rem', color: '#FFD700' }}>Latest Personality</p>
             <h3 className="gradient-text-cosmic" style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.4rem' }}>{latestResult.archetype}</h3>
-            <p style={{ fontSize: '0.8rem', marginBottom: '0.3rem', color: '#b8b5c9' }}>{latestResult.heroIdentity.name} / {latestResult.villainIdentity.name}</p>
-            <p style={{ fontSize: '0.7rem', color: '#6b6880' }}>{latestResult.spiritAnimal.emoji} {latestResult.spiritAnimal.animal} • {latestResult.animeMatch.character}</p>
+            <p style={{ fontSize: '0.8rem', marginBottom: '0.3rem', color: '#A89968' }}>{latestResult.heroIdentity.name} / {latestResult.villainIdentity.name}</p>
+            <p style={{ fontSize: '0.7rem', color: '#6B6340' }}>{latestResult.spiritAnimal.emoji} {latestResult.spiritAnimal.animal} • {latestResult.animeMatch.character}</p>
           </motion.div>
         )}
 
@@ -66,13 +66,13 @@ export default function ProfilePage() {
           ].map(({ href, label, icon }) => (
             <Link key={href} href={href} className="glass card-hover" style={{ padding: '1rem', textAlign: 'center', display: 'block' }}>
               <div style={{ fontSize: '1.5rem', marginBottom: '0.25rem' }}>{icon}</div>
-              <p style={{ fontSize: '0.7rem', color: '#b8b5c9' }}>{label}</p>
+              <p style={{ fontSize: '0.7rem', color: '#A89968' }}>{label}</p>
             </Link>
           ))}
         </div>
 
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <Link href="/" className="glass-subtle" style={{ padding: '0.6rem 1.25rem', borderRadius: 9999, fontSize: '0.85rem', color: '#b8b5c9', display: 'inline-flex', alignItems: 'center' }}>🏠 Home</Link>
+          <Link href="/" className="glass-subtle" style={{ padding: '0.6rem 1.25rem', borderRadius: 9999, fontSize: '0.85rem', color: '#A89968', display: 'inline-flex', alignItems: 'center' }}>🏠 Home</Link>
         </div>
       </div>
     </div>
