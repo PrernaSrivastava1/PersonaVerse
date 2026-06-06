@@ -209,6 +209,23 @@ button { font-family: inherit; }
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 215, 0, 0.08);
 }
 
+/* Home button */
+.home-btn {
+  position: relative;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.home-btn:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 215, 0, 0.5) !important;
+  box-shadow: 0 0 24px rgba(255, 215, 0, 0.2), 0 0 48px rgba(255, 215, 0, 0.06), inset 0 1px 0 rgba(255, 215, 0, 0.15) !important;
+  background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(230,168,23,0.08)) !important;
+  color: #FFE55C !important;
+}
+.home-btn:active {
+  transform: translateY(0);
+}
+
 /* ============================================ */
 /* Animations                                   */
 /* ============================================ */

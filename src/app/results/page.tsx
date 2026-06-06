@@ -106,8 +106,32 @@ export default function ResultsPage() {
         <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} style={{ textAlign: 'center', padding: '3rem 0' }}>
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0.75rem' }}>
             <button onClick={() => { resetQuiz(); router.push('/universe'); }} className="btn-cosmic">✦ Explore Another Path</button>
-            <button onClick={() => router.push('/daily')} className="btn-cosmic" style={{ background: 'linear-gradient(135deg, #1A1A14, #2A2510)' }}>⭐ Daily Challenge</button>
-            <button onClick={() => router.push('/')} className="glass-subtle" style={{ padding: '0.75rem 1.5rem', borderRadius: 9999, cursor: 'pointer', color: '#A89968', fontSize: '0.85rem', border: 'none', fontFamily: 'inherit' }}>🏠 Home</button>
+            <button onClick={() => router.push('/daily')} className="home-btn" style={{
+              padding: '0.65rem 1.5rem', borderRadius: 9999, fontSize: '0.85rem',
+              display: 'inline-flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer',
+              color: '#FFD700', fontWeight: 600, fontFamily: "'Outfit', sans-serif",
+              letterSpacing: '0.04em',
+              background: 'linear-gradient(135deg, rgba(255,215,0,0.08), rgba(230,168,23,0.04))',
+              border: '1px solid rgba(255,215,0,0.25)',
+              boxShadow: '0 0 12px rgba(255,215,0,0.06), inset 0 1px 0 rgba(255,215,0,0.08)',
+              transition: 'all 0.3s ease',
+            }}>
+              <span style={{ fontSize: '1.1rem', filter: 'drop-shadow(0 0 4px rgba(255,215,0,0.4))' }}>⭐</span>
+              <span>Daily Challenge</span>
+            </button>
+            <button onClick={() => router.push('/')} className="home-btn" style={{
+              padding: '0.65rem 1.5rem', borderRadius: 9999, fontSize: '0.85rem',
+              display: 'inline-flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer',
+              color: '#FFD700', fontWeight: 600, fontFamily: "'Outfit', sans-serif",
+              letterSpacing: '0.04em',
+              background: 'linear-gradient(135deg, rgba(255,215,0,0.08), rgba(230,168,23,0.04))',
+              border: '1px solid rgba(255,215,0,0.25)',
+              boxShadow: '0 0 12px rgba(255,215,0,0.06), inset 0 1px 0 rgba(255,215,0,0.08)',
+              transition: 'all 0.3s ease',
+            }}>
+              <span style={{ fontSize: '1.1rem', filter: 'drop-shadow(0 0 4px rgba(255,215,0,0.4))' }}>🏠</span>
+              <span>Home</span>
+            </button>
           </div>
         </motion.div>
       </div>

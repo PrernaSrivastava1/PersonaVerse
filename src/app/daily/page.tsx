@@ -94,7 +94,19 @@ export default function DailyPage() {
 
         <div style={{ display: 'flex', justifyContent: 'center', gap: '0.75rem' }}>
           <Link href="/universe" className="btn-cosmic" style={{ fontSize: '0.85rem', padding: '0.6rem 1.25rem' }}>🔮 Take Quiz</Link>
-          <Link href="/" className="glass-subtle" style={{ padding: '0.6rem 1.25rem', borderRadius: 9999, fontSize: '0.85rem', color: '#A89968', display: 'inline-flex', alignItems: 'center' }}>🏠 Home</Link>
+          <Link href="/" className="home-btn" style={{
+            padding: '0.65rem 1.5rem', borderRadius: 9999, fontSize: '0.85rem',
+            display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
+            color: '#FFD700', fontWeight: 600, fontFamily: "'Outfit', sans-serif",
+            letterSpacing: '0.04em',
+            background: 'linear-gradient(135deg, rgba(255,215,0,0.08), rgba(230,168,23,0.04))',
+            border: '1px solid rgba(255,215,0,0.25)',
+            boxShadow: '0 0 12px rgba(255,215,0,0.06), inset 0 1px 0 rgba(255,215,0,0.08)',
+            transition: 'all 0.3s ease',
+          }}>
+            <span style={{ fontSize: '1.1rem', filter: 'drop-shadow(0 0 4px rgba(255,215,0,0.4))' }}>🏠</span>
+            <span>Home</span>
+          </Link>
         </div>
       </div>
     </div>
