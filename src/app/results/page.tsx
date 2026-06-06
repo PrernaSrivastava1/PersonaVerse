@@ -26,53 +26,29 @@ export default function ResultsPage() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!isComplete || !selectedPlanet) {
-      router.push('/universe');
-      return;
-    }
-
+    if (!isComplete || !selectedPlanet) { router.push('/universe'); return; }
     const fetchResults = async () => {
       try {
-        const res = await fetch('/api/analyze', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ scores, answers, planet: selectedPlanet }),
-        });
+        const res = await fetch('/api/analyze', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ scores, answers, planet: selectedPlanet }) });
         if (!res.ok) throw new Error('Analysis failed');
         const data: PersonalityResult = await res.json();
         setResult(data);
         savePersonalityResult(data);
-      } catch (err) {
-        setError('Failed to analyze. Please try again.');
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
+      } catch (err) { setError('Failed to analyze. Please try again.'); console.error(err); }
+      finally { setLoading(false); }
     };
-
     fetchResults();
   }, [isComplete, selectedPlanet, scores, answers, router, savePersonalityResult]);
 
   if (loading) {
     return (
-      <div className="page-container flex items-center justify-center">
-        <div className="scene-background">
-          <CosmicScene><StarField /></CosmicScene>
-        </div>
-        <div className="content-overlay text-center">
-          <motion.div
-            animate={{ scale: [1, 1.2, 1] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="w-24 h-24 mx-auto mb-8 rounded-full"
-            style={{
-              background: 'radial-gradient(circle, var(--color-stellar-cyan), var(--color-nebula), var(--color-void))',
-              boxShadow: '0 0 80px rgba(0, 212, 255, 0.4), 0 0 120px rgba(45, 27, 105, 0.3)',
-            }}
-          />
-          <h2 className="text-2xl md:text-4xl font-bold gradient-text-cosmic mb-3">
-            Scanning the Cosmos...
-          </h2>
-          <p style={{ color: 'var(--color-mist)' }}>Analyzing your unique personality signature</p>
+      <div className="page-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div className="scene-background"><CosmicScene><StarField /></CosmicScene></div>
+        <div className="content-overlay" style={{ textAlign: 'center' }}>
+          <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 2, repeat: Infinity }}
+            style={{ width: 96, height: 96, margin: '0 auto 2rem', borderRadius: '50%', background: 'radial-gradient(circle, #00d4ff, #2d1b69, #050510)', boxShadow: '0 0 80px rgba(0, 212, 255, 0.4)' }} />
+          <h2 className="gradient-text-cosmic" style={{ fontSize: 'clamp(1.5rem, 4vw, 2.5rem)', fontWeight: 700, marginBottom: '0.75rem' }}>Scanning the Cosmos...</h2>
+          <p style={{ color: '#b8b5c9' }}>Analyzing your unique personality signature</p>
         </div>
       </div>
     );
@@ -80,12 +56,10 @@ export default function ResultsPage() {
 
   if (error || !result) {
     return (
-      <div className="page-container flex items-center justify-center">
-        <div className="content-overlay text-center">
-          <p className="text-xl mb-4" style={{ color: 'var(--color-crimson)' }}>{error || 'Something went wrong'}</p>
-          <button onClick={() => { resetQuiz(); router.push('/universe'); }} className="btn-cosmic">
-            Try Again
-          </button>
+      <div className="page-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div className="content-overlay" style={{ textAlign: 'center' }}>
+          <p style={{ fontSize: '1.25rem', marginBottom: '1rem', color: '#ff2d55' }}>{error || 'Something went wrong'}</p>
+          <button onClick={() => { resetQuiz(); router.push('/universe'); }} className="btn-cosmic">Try Again</button>
         </div>
       </div>
     );
@@ -93,27 +67,15 @@ export default function ResultsPage() {
 
   return (
     <div className="page-container">
-      <div className="scene-background">
-        <CosmicScene><StarField /></CosmicScene>
-      </div>
-
-      <div className="content-overlay min-h-screen px-4 py-8 max-w-3xl mx-auto">
-        {/* Reveal header */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1 }}
-          className="text-center mb-12"
-        >
-          <p className="text-xs tracking-[0.3em] uppercase mb-3" style={{ color: 'var(--color-mist)' }}>
-            ✦ THE COSMOS HAS SPOKEN ✦
-          </p>
-          <h1 className="text-3xl md:text-5xl font-black gradient-text-cosmic">
-            Your Universe Revealed
-          </h1>
+      <div className="scene-background"><CosmicScene><StarField /></CosmicScene></div>
+      <div className="content-overlay" style={{ minHeight: '100vh', padding: '2rem 1rem', maxWidth: 740, margin: '0 auto' }}>
+        {/* Header */}
+        <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1 }}
+          style={{ textAlign: 'center', marginBottom: '3rem' }}>
+          <p style={{ fontSize: '0.7rem', letterSpacing: '0.3em', textTransform: 'uppercase', marginBottom: '0.75rem', color: '#b8b5c9' }}>✦ THE COSMOS HAS SPOKEN ✦</p>
+          <h1 className="gradient-text-cosmic" style={{ fontSize: 'clamp(1.75rem, 5vw, 3rem)', fontWeight: 900 }}>Your Universe Revealed</h1>
         </motion.div>
 
-        {/* Result cards */}
         <PersonalityCard result={result} />
         <HeroCard result={result} />
         <VillainCard result={result} />
@@ -121,65 +83,31 @@ export default function ResultsPage() {
         <SpiritAnimalCard result={result} />
 
         {/* Famous Match */}
-        <motion.section
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="glass-strong p-8 mb-8 text-center"
-        >
-          <p className="text-xs tracking-[0.3em] uppercase mb-2" style={{ color: 'var(--color-solar-gold)' }}>
-            ⭐ FAMOUS CHARACTER MATCH
-          </p>
-          <h3 className="text-2xl font-bold mb-2" style={{ color: 'var(--color-ghost-white)' }}>
-            {result.famousMatch.name}
-          </h3>
-          <p className="text-sm" style={{ color: 'var(--color-mist)' }}>{result.famousMatch.reason}</p>
-          <ShareButton title={result.famousMatch.name} text={`I match ${result.famousMatch.name}!`} />
+        <motion.section initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="glass-strong" style={{ padding: '2rem', marginBottom: '1.5rem', textAlign: 'center' }}>
+          <p style={{ fontSize: '0.65rem', letterSpacing: '0.3em', textTransform: 'uppercase', marginBottom: '0.5rem', color: '#ffd700' }}>⭐ FAMOUS CHARACTER MATCH</p>
+          <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.5rem', color: '#e8e6f0' }}>{result.famousMatch.name}</h3>
+          <p style={{ fontSize: '0.85rem', color: '#b8b5c9' }}>{result.famousMatch.reason}</p>
+          <div style={{ display: 'flex', justifyContent: 'center' }}><ShareButton title={result.famousMatch.name} text={`I match ${result.famousMatch.name}!`} /></div>
         </motion.section>
 
         {/* Best Friend & Future Self */}
-        <div className="grid md:grid-cols-2 gap-4 mb-8">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="glass p-6"
-          >
-            <p className="text-xs tracking-widest uppercase mb-2" style={{ color: 'var(--color-stellar-cyan)' }}>
-              🤝 Best Friend Match
-            </p>
-            <p className="text-sm" style={{ color: 'var(--color-ghost-white)' }}>{result.bestFriendMatch}</p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem', marginBottom: '1.5rem' }}>
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="glass" style={{ padding: '1.5rem' }}>
+            <p style={{ fontSize: '0.65rem', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '0.5rem', color: '#00d4ff' }}>🤝 Best Friend Match</p>
+            <p style={{ fontSize: '0.85rem', color: '#e8e6f0' }}>{result.bestFriendMatch}</p>
           </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="glass p-6"
-          >
-            <p className="text-xs tracking-widest uppercase mb-2" style={{ color: 'var(--color-aurora-green)' }}>
-              🔮 Future Self
-            </p>
-            <p className="text-sm" style={{ color: 'var(--color-ghost-white)' }}>{result.futureSelf}</p>
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="glass" style={{ padding: '1.5rem' }}>
+            <p style={{ fontSize: '0.65rem', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '0.5rem', color: '#00ff88' }}>🔮 Future Self</p>
+            <p style={{ fontSize: '0.85rem', color: '#e8e6f0' }}>{result.futureSelf}</p>
           </motion.div>
         </div>
 
         {/* CTAs */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="text-center py-12"
-        >
-          <div className="flex flex-wrap justify-center gap-4">
-            <button onClick={() => { resetQuiz(); router.push('/universe'); }} className="btn-cosmic">
-              ✦ Explore Another Path
-            </button>
-            <button onClick={() => router.push('/daily')} className="btn-cosmic" style={{ background: 'linear-gradient(135deg, #1a0533, #2d1b69)' }}>
-              ⭐ Daily Challenge
-            </button>
-            <button onClick={() => router.push('/')} className="glass-subtle px-6 py-3 rounded-full text-sm cursor-pointer" style={{ color: 'var(--color-mist)' }}>
-              🏠 Home
-            </button>
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} style={{ textAlign: 'center', padding: '3rem 0' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0.75rem' }}>
+            <button onClick={() => { resetQuiz(); router.push('/universe'); }} className="btn-cosmic">✦ Explore Another Path</button>
+            <button onClick={() => router.push('/daily')} className="btn-cosmic" style={{ background: 'linear-gradient(135deg, #1a0533, #2d1b69)' }}>⭐ Daily Challenge</button>
+            <button onClick={() => router.push('/')} className="glass-subtle" style={{ padding: '0.75rem 1.5rem', borderRadius: 9999, cursor: 'pointer', color: '#b8b5c9', fontSize: '0.85rem', border: 'none', fontFamily: 'inherit' }}>🏠 Home</button>
           </div>
         </motion.div>
       </div>

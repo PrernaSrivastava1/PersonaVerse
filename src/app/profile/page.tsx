@@ -3,90 +3,76 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useGameStore } from '@/store/gameStore';
-import XPBar from '@/components/game/XPBar';
 
 export default function ProfilePage() {
   const { xp, level, levelName, streak, personalityResults, achievements } = useGameStore();
-  const unlocked = achievements.filter((a) => a.unlockedAt).length;
+  const unlocked = achievements.filter(a => a.unlockedAt).length;
   const latestResult = personalityResults[0];
 
   return (
     <div className="page-container">
-      <div className="content-overlay min-h-screen px-4 py-8 max-w-2xl mx-auto">
-        <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-8">
-          <div className="w-24 h-24 mx-auto mb-4 rounded-full flex items-center justify-center text-4xl"
-            style={{ background: 'linear-gradient(135deg, var(--color-nebula), var(--color-stellar-blue))', boxShadow: '0 0 40px rgba(0, 212, 255, 0.3)' }}>
+      <div className="content-overlay" style={{ minHeight: '100vh', padding: '2rem 1rem', maxWidth: 600, margin: '0 auto' }}>
+        <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} style={{ textAlign: 'center', marginBottom: '2rem' }}>
+          <div style={{ width: 80, height: 80, margin: '0 auto 1rem', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2.5rem', background: 'linear-gradient(135deg, #2d1b69, #1e3a5f)', boxShadow: '0 0 40px rgba(0, 212, 255, 0.3)' }}>
             👤
           </div>
-          <h1 className="text-3xl md:text-5xl font-bold gradient-text-cosmic mb-1">Your Universe</h1>
-          <p className="text-lg font-semibold" style={{ color: 'var(--color-stellar-cyan)' }}>
-            Level {level} — {levelName}
-          </p>
+          <h1 className="gradient-text-cosmic" style={{ fontSize: 'clamp(1.75rem, 5vw, 2.75rem)', fontWeight: 800, marginBottom: '0.25rem' }}>Your Universe</h1>
+          <p style={{ fontSize: '1rem', fontWeight: 600, color: '#00d4ff' }}>Level {level} — {levelName}</p>
         </motion.div>
 
-        <div className="mb-6"><XPBar /></div>
+        {/* XP bar */}
+        <div className="glass-subtle" style={{ padding: '1rem', marginBottom: '1.5rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.4rem' }}>
+            <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#00d4ff' }}>Level {level}</span>
+            <span style={{ fontSize: '0.7rem', color: '#6b6880' }}>{xp} XP</span>
+          </div>
+          <div style={{ height: 6, borderRadius: 3, background: 'rgba(255,255,255,0.08)', overflow: 'hidden' }}>
+            <div style={{ height: '100%', borderRadius: 3, background: 'linear-gradient(90deg, #00d4ff, #ff6b9d, #00ff88)', width: `${Math.min((xp % 200) / 2, 100)}%`, transition: 'width 0.5s' }} />
+          </div>
+        </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-3 gap-3 mb-8">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.75rem', marginBottom: '1.5rem' }}>
           {[
             { label: 'XP', value: xp, icon: '⚡' },
             { label: 'Streak', value: streak, icon: '🔥' },
             { label: 'Achievements', value: `${unlocked}/${achievements.length}`, icon: '🏆' },
           ].map(({ label, value, icon }, i) => (
-            <motion.div key={label} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }} className="glass p-4 text-center">
-              <div className="text-xl mb-1">{icon}</div>
-              <p className="text-lg font-bold" style={{ color: 'var(--color-ghost-white)' }}>{value}</p>
-              <p className="text-[10px] tracking-wider uppercase" style={{ color: 'var(--color-twilight)' }}>{label}</p>
+            <motion.div key={label} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }}
+              className="glass" style={{ padding: '1rem', textAlign: 'center' }}>
+              <div style={{ fontSize: '1.25rem', marginBottom: '0.25rem' }}>{icon}</div>
+              <p style={{ fontSize: '1.1rem', fontWeight: 700, color: '#e8e6f0' }}>{value}</p>
+              <p style={{ fontSize: '0.55rem', letterSpacing: '0.08em', textTransform: 'uppercase', color: '#6b6880' }}>{label}</p>
             </motion.div>
           ))}
         </div>
 
         {/* Latest Result */}
         {latestResult && (
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="glass-strong p-6 mb-6">
-            <p className="text-xs tracking-widest uppercase mb-2" style={{ color: 'var(--color-stellar-cyan)' }}>Latest Personality</p>
-            <h3 className="text-2xl font-bold gradient-text-cosmic mb-2">{latestResult.archetype}</h3>
-            <p className="text-sm" style={{ color: 'var(--color-mist)' }}>
-              {latestResult.heroIdentity.name} / {latestResult.villainIdentity.name}
-            </p>
-            <p className="text-xs mt-2" style={{ color: 'var(--color-twilight)' }}>
-              Spirit Animal: {latestResult.spiritAnimal.emoji} {latestResult.spiritAnimal.animal} •
-              Anime: {latestResult.animeMatch.character}
-            </p>
-          </motion.div>
-        )}
-
-        {/* Recent Achievements */}
-        {unlocked > 0 && (
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="glass p-6 mb-6">
-            <p className="text-xs tracking-widest uppercase mb-3" style={{ color: 'var(--color-solar-gold)' }}>Recent Achievements</p>
-            <div className="flex gap-4">
-              {achievements.filter((a) => a.unlockedAt).slice(0, 3).map((a) => (
-                <div key={a.id} className="text-center">
-                  <div className="text-3xl mb-1">{a.icon}</div>
-                  <p className="text-[10px]" style={{ color: 'var(--color-mist)' }}>{a.title}</p>
-                </div>
-              ))}
-            </div>
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="glass-strong" style={{ padding: '1.5rem', marginBottom: '1.5rem' }}>
+            <p style={{ fontSize: '0.6rem', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '0.5rem', color: '#00d4ff' }}>Latest Personality</p>
+            <h3 className="gradient-text-cosmic" style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.4rem' }}>{latestResult.archetype}</h3>
+            <p style={{ fontSize: '0.8rem', marginBottom: '0.3rem', color: '#b8b5c9' }}>{latestResult.heroIdentity.name} / {latestResult.villainIdentity.name}</p>
+            <p style={{ fontSize: '0.7rem', color: '#6b6880' }}>{latestResult.spiritAnimal.emoji} {latestResult.spiritAnimal.animal} • {latestResult.animeMatch.character}</p>
           </motion.div>
         )}
 
         {/* Quick Links */}
-        <div className="grid grid-cols-3 gap-3">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.75rem', marginBottom: '2rem' }}>
           {[
             { href: '/universe', label: 'Take Quiz', icon: '🔮' },
             { href: '/daily', label: 'Daily Portal', icon: '⭐' },
             { href: '/achievements', label: 'Achievements', icon: '🏆' },
           ].map(({ href, label, icon }) => (
-            <Link key={href} href={href} className="glass p-4 text-center card-hover block">
-              <div className="text-2xl mb-1">{icon}</div>
-              <p className="text-xs" style={{ color: 'var(--color-mist)' }}>{label}</p>
+            <Link key={href} href={href} className="glass card-hover" style={{ padding: '1rem', textAlign: 'center', display: 'block' }}>
+              <div style={{ fontSize: '1.5rem', marginBottom: '0.25rem' }}>{icon}</div>
+              <p style={{ fontSize: '0.7rem', color: '#b8b5c9' }}>{label}</p>
             </Link>
           ))}
         </div>
 
-        <div className="flex justify-center mt-8">
-          <Link href="/" className="glass-subtle px-5 py-2.5 rounded-full text-sm" style={{ color: 'var(--color-mist)' }}>🏠 Home</Link>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <Link href="/" className="glass-subtle" style={{ padding: '0.6rem 1.25rem', borderRadius: 9999, fontSize: '0.85rem', color: '#b8b5c9', display: 'inline-flex', alignItems: 'center' }}>🏠 Home</Link>
         </div>
       </div>
     </div>

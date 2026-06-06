@@ -18,15 +18,13 @@ export default function LandingPage() {
 
   const handleEnter = useCallback(() => {
     setIsPortalOpen(true);
-    setTimeout(() => {
-      router.push('/universe');
-    }, 1500);
+    setTimeout(() => router.push('/universe'), 1500);
   }, [router]);
 
   return (
-    <div className="page-container">
+    <div style={{ minHeight: '100vh', position: 'relative', overflow: 'hidden', background: '#050510' }}>
       {/* 3D Background */}
-      <div className="scene-background">
+      <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
         <CosmicScene>
           <MouseTracker>
             <StarField />
@@ -37,7 +35,7 @@ export default function LandingPage() {
         </CosmicScene>
       </div>
 
-      {/* Portal Animation Overlay */}
+      {/* Portal Animation */}
       <AnimatePresence>
         {isPortalOpen && (
           <motion.div
@@ -45,48 +43,60 @@ export default function LandingPage() {
             animate={{ scale: 50, opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 1.5, ease: 'easeInOut' }}
-            className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none"
+            style={{
+              position: 'fixed', inset: 0, zIndex: 50,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              pointerEvents: 'none',
+            }}
           >
-            <div
-              className="w-16 h-16 rounded-full"
-              style={{
-                background: 'radial-gradient(circle, #00d4ff 0%, #2d1b69 40%, transparent 70%)',
-                boxShadow: '0 0 100px 50px rgba(0, 212, 255, 0.3)',
-              }}
-            />
+            <div style={{
+              width: 64, height: 64, borderRadius: '50%',
+              background: 'radial-gradient(circle, #00d4ff 0%, #2d1b69 40%, transparent 70%)',
+              boxShadow: '0 0 100px 50px rgba(0, 212, 255, 0.3)',
+            }} />
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Content Overlay */}
-      <div className="content-overlay min-h-screen flex flex-col items-center justify-center px-4">
+      {/* Content */}
+      <div style={{
+        position: 'relative', zIndex: 10,
+        minHeight: '100vh', display: 'flex', flexDirection: 'column',
+        alignItems: 'center', justifyContent: 'center',
+        padding: '2rem 1.5rem',
+      }}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="text-center max-w-3xl"
+          style={{ textAlign: 'center', maxWidth: 720 }}
         >
           {/* Tagline */}
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 0.8 }}
-            className="text-sm md:text-base tracking-[0.3em] uppercase mb-6"
-            style={{ color: 'var(--color-mist)' }}
+            style={{
+              fontSize: '0.75rem', letterSpacing: '0.3em', textTransform: 'uppercase',
+              marginBottom: '1.5rem', color: '#b8b5c9',
+            }}
           >
-            ✦ A I &nbsp; P O W E R E D &nbsp; P E R S O N A L I T Y &nbsp; U N I V E R S E ✦
+            ✦ AI POWERED PERSONALITY UNIVERSE ✦
           </motion.p>
 
-          {/* Main Title */}
+          {/* Title */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 1 }}
-            className="text-5xl sm:text-6xl md:text-8xl font-black mb-6 leading-tight gradient-text-cosmic"
+            className="gradient-text-cosmic"
+            style={{
+              fontSize: 'clamp(2.5rem, 8vw, 6rem)',
+              fontWeight: 900, marginBottom: '1.5rem',
+              lineHeight: 1.05,
+            }}
           >
-            Who Are You
-            <br />
-            Really?
+            Who Are You<br />Really?
           </motion.h1>
 
           {/* Subtitle */}
@@ -94,14 +104,17 @@ export default function LandingPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2, duration: 0.8 }}
-            className="text-lg md:text-xl mb-12 max-w-lg mx-auto"
-            style={{ color: 'var(--color-mist)' }}
+            style={{
+              fontSize: 'clamp(1rem, 2.5vw, 1.25rem)',
+              marginBottom: '3rem', maxWidth: 520, margin: '0 auto 3rem',
+              color: '#b8b5c9', lineHeight: 1.7,
+            }}
           >
-            Explore the Universe Inside You — Discover hidden traits, your hero identity,
-            villain arc, spirit animal, and more through an immersive cosmic experience.
+            Explore the Universe Inside You — Discover your hero identity, villain arc,
+            spirit animal, and more through an immersive cosmic experience.
           </motion.p>
 
-          {/* CTA Button */}
+          {/* CTA */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -111,7 +124,8 @@ export default function LandingPage() {
               id="enter-universe-btn"
               onClick={handleEnter}
               disabled={isPortalOpen}
-              className="btn-cosmic text-lg md:text-xl px-10 py-4 animate-pulse-glow"
+              className="btn-cosmic animate-pulse-glow"
+              style={{ fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', padding: '1rem 3rem' }}
             >
               {isPortalOpen ? '✦ Opening Portal...' : '✦ Enter The Universe'}
             </button>
@@ -122,14 +136,21 @@ export default function LandingPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 2, duration: 0.8 }}
-            className="mt-12 flex flex-wrap justify-center gap-3"
+            style={{
+              marginTop: '3rem', display: 'flex', flexWrap: 'wrap',
+              justifyContent: 'center', gap: '0.6rem',
+            }}
           >
             {['AI Personality', 'Hero Identity', 'Villain Arc', 'Spirit Animal', 'Anime Match'].map(
               (tag) => (
                 <span
                   key={tag}
-                  className="glass-subtle px-4 py-1.5 text-xs tracking-wider uppercase"
-                  style={{ color: 'var(--color-stellar-cyan)' }}
+                  className="glass-subtle"
+                  style={{
+                    padding: '0.4rem 1rem', fontSize: '0.7rem',
+                    letterSpacing: '0.1em', textTransform: 'uppercase',
+                    color: '#00d4ff',
+                  }}
                 >
                   {tag}
                 </span>
@@ -138,13 +159,15 @@ export default function LandingPage() {
           </motion.div>
         </motion.div>
 
-        {/* Bottom version text */}
+        {/* Version */}
         <motion.p
           initial={{ opacity: 0 }}
-          animate={{ opacity: 0.3 }}
+          animate={{ opacity: 0.25 }}
           transition={{ delay: 2.5 }}
-          className="absolute bottom-6 text-xs tracking-widest"
-          style={{ color: 'var(--color-twilight)' }}
+          style={{
+            position: 'absolute', bottom: 24, fontSize: '0.65rem',
+            letterSpacing: '0.15em', color: '#6b6880',
+          }}
         >
           PERSONAVERSE v1.0 — Powered by Gemini AI
         </motion.p>

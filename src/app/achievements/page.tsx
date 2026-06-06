@@ -3,62 +3,51 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useGameStore } from '@/store/gameStore';
-import AchievementCard from '@/components/game/AchievementCard';
-import XPBar from '@/components/game/XPBar';
 
 export default function AchievementsPage() {
-  const { achievements, xp, level, levelName, streak, personalityResults } = useGameStore();
-  const unlocked = achievements.filter((a) => a.unlockedAt).length;
+  const { achievements, xp, level, streak, personalityResults } = useGameStore();
+  const unlocked = achievements.filter(a => a.unlockedAt).length;
 
   return (
     <div className="page-container">
-      <div className="content-overlay min-h-screen px-4 py-8 max-w-3xl mx-auto">
-        <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-8">
-          <h1 className="text-3xl md:text-5xl font-bold gradient-text-cosmic mb-2">Your Achievements</h1>
-          <p className="text-sm" style={{ color: 'var(--color-mist)' }}>{unlocked} of {achievements.length} unlocked</p>
+      <div className="content-overlay" style={{ minHeight: '100vh', padding: '2rem 1rem', maxWidth: 700, margin: '0 auto' }}>
+        <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} style={{ textAlign: 'center', marginBottom: '2rem' }}>
+          <h1 className="gradient-text-cosmic" style={{ fontSize: 'clamp(1.75rem, 5vw, 2.75rem)', fontWeight: 800, marginBottom: '0.25rem' }}>Your Achievements</h1>
+          <p style={{ fontSize: '0.85rem', color: '#b8b5c9' }}>{unlocked} of {achievements.length} unlocked</p>
         </motion.div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.75rem', marginBottom: '2rem' }}>
           {[
             { label: 'Total XP', value: xp, icon: '⚡' },
-            { label: 'Level', value: `${level} - ${levelName}`, icon: '🏅' },
-            { label: 'Streak', value: `${streak} days`, icon: '🔥' },
+            { label: 'Level', value: level, icon: '🏅' },
+            { label: 'Streak', value: `${streak}d`, icon: '🔥' },
             { label: 'Quizzes', value: personalityResults.length, icon: '🔮' },
           ].map(({ label, value, icon }, i) => (
-            <motion.div
-              key={label}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-              className="glass p-4 text-center"
-            >
-              <div className="text-2xl mb-1">{icon}</div>
-              <p className="text-lg font-bold" style={{ color: 'var(--color-ghost-white)' }}>{value}</p>
-              <p className="text-[10px] tracking-wider uppercase" style={{ color: 'var(--color-twilight)' }}>{label}</p>
+            <motion.div key={label} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }}
+              className="glass" style={{ padding: '1rem 0.5rem', textAlign: 'center' }}>
+              <div style={{ fontSize: '1.5rem', marginBottom: '0.25rem' }}>{icon}</div>
+              <p style={{ fontSize: '1.1rem', fontWeight: 700, color: '#e8e6f0' }}>{value}</p>
+              <p style={{ fontSize: '0.55rem', letterSpacing: '0.08em', textTransform: 'uppercase', color: '#6b6880' }}>{label}</p>
             </motion.div>
           ))}
         </div>
 
-        <div className="mb-6"><XPBar /></div>
-
-        {/* Achievement grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          {achievements.map((achievement, i) => (
-            <motion.div
-              key={achievement.id}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: i * 0.08 }}
-            >
-              <AchievementCard achievement={achievement} />
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '0.75rem', marginBottom: '2rem' }}>
+          {achievements.map((a, i) => (
+            <motion.div key={a.id} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: i * 0.06 }}
+              className={a.unlockedAt ? 'glass glow-cyan' : 'glass'}
+              style={{ padding: '1.25rem', textAlign: 'center', opacity: a.unlockedAt ? 1 : 0.4, filter: a.unlockedAt ? 'none' : 'grayscale(1)' }}>
+              <div style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>{a.unlockedAt ? a.icon : '🔒'}</div>
+              <h3 style={{ fontSize: '0.8rem', fontWeight: 600, marginBottom: '0.25rem', color: a.unlockedAt ? '#e8e6f0' : '#6b6880' }}>{a.title}</h3>
+              <p style={{ fontSize: '0.65rem', color: '#6b6880' }}>{a.description}</p>
+              {a.unlockedAt && <p style={{ fontSize: '0.55rem', marginTop: '0.4rem', color: '#00d4ff' }}>Unlocked {new Date(a.unlockedAt).toLocaleDateString()}</p>}
             </motion.div>
           ))}
         </div>
 
-        <div className="flex justify-center gap-4 mt-8">
-          <Link href="/universe" className="btn-cosmic text-sm">🔮 Take Quiz</Link>
-          <Link href="/" className="glass-subtle px-5 py-2.5 rounded-full text-sm" style={{ color: 'var(--color-mist)' }}>🏠 Home</Link>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '0.75rem' }}>
+          <Link href="/universe" className="btn-cosmic" style={{ fontSize: '0.85rem', padding: '0.6rem 1.25rem' }}>🔮 Take Quiz</Link>
+          <Link href="/" className="glass-subtle" style={{ padding: '0.6rem 1.25rem', borderRadius: 9999, fontSize: '0.85rem', color: '#b8b5c9', display: 'inline-flex', alignItems: 'center' }}>🏠 Home</Link>
         </div>
       </div>
     </div>

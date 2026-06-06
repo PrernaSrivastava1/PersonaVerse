@@ -6,48 +6,23 @@ import ShareButton from './ShareButton';
 
 export default function HeroCard({ result }: { result: PersonalityResult }) {
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.8 }}
-      className="glass-strong p-8 md:p-10 mb-8 glow-gold"
-    >
-      <p className="text-xs tracking-[0.3em] uppercase mb-2 text-center" style={{ color: 'var(--color-solar-gold)' }}>
-        ⚡ YOUR HERO IDENTITY ⚡
-      </p>
-      <h2 className="text-3xl md:text-5xl font-black text-center mb-6 gradient-text-hero text-glow-gold">
-        {result.heroIdentity.name}
-      </h2>
-
-      <div className="max-w-xl mx-auto">
-        <p className="text-sm mb-6 text-center italic" style={{ color: 'var(--color-ghost-white)' }}>
-          {result.heroIdentity.backstory}
-        </p>
-
-        <h3 className="text-xs tracking-widest uppercase mb-3" style={{ color: 'var(--color-solar-gold)' }}>
-          ⚡ Powers
-        </h3>
-        <div className="grid gap-2 mb-4">
+    <motion.section initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
+      className="glass-strong glow-gold" style={{ padding: '2rem', marginBottom: '1.5rem' }}>
+      <p style={{ fontSize: '0.65rem', letterSpacing: '0.3em', textTransform: 'uppercase', marginBottom: '0.5rem', textAlign: 'center', color: '#ffd700' }}>⚡ YOUR HERO IDENTITY ⚡</p>
+      <h2 className="gradient-text-hero text-glow-gold" style={{ fontSize: 'clamp(1.5rem, 5vw, 2.75rem)', fontWeight: 900, textAlign: 'center', marginBottom: '1.5rem' }}>{result.heroIdentity.name}</h2>
+      <div style={{ maxWidth: 480, margin: '0 auto' }}>
+        <p style={{ fontSize: '0.9rem', marginBottom: '1.5rem', textAlign: 'center', fontStyle: 'italic', color: '#e8e6f0' }}>{result.heroIdentity.backstory}</p>
+        <p style={{ fontSize: '0.65rem', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '0.75rem', color: '#ffd700' }}>⚡ Powers</p>
+        <div style={{ display: 'grid', gap: '0.5rem', marginBottom: '1rem' }}>
           {result.heroIdentity.powers.map((power, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.15 }}
-              className="glass-subtle px-4 py-3 rounded-lg text-sm flex items-center gap-2"
-              style={{ color: 'var(--color-ghost-white)' }}
-            >
-              <span style={{ color: 'var(--color-solar-gold)' }}>⚡</span> {power}
+            <motion.div key={i} initial={{ opacity: 0, x: -15 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+              className="glass-subtle" style={{ padding: '0.75rem 1rem', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#e8e6f0' }}>
+              <span style={{ color: '#ffd700' }}>⚡</span> {power}
             </motion.div>
           ))}
         </div>
       </div>
-
-      <div className="flex justify-center">
-        <ShareButton title={result.heroIdentity.name} text={`My hero identity: ${result.heroIdentity.name}! Powers: ${result.heroIdentity.powers.join(', ')}`} />
-      </div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}><ShareButton title={result.heroIdentity.name} text={`My hero: ${result.heroIdentity.name}! Powers: ${result.heroIdentity.powers.join(', ')}`} /></div>
     </motion.section>
   );
 }
